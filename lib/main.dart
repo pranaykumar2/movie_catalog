@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'CineVerse',
+      title: 'Movie Catalog',
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,
@@ -395,7 +395,7 @@ class _MovieCatalogAppState extends State<MovieCatalogApp> with SingleTickerProv
                       child: TextField(
                         controller: _searchController,
                         onChanged: filterMovies,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           hintText: 'Search movies...',
                           hintStyle: const TextStyle(color: Colors.white70),
@@ -417,7 +417,7 @@ class _MovieCatalogAppState extends State<MovieCatalogApp> with SingleTickerProv
                   ),
                 ),
               )
-            : const Text('CineVerse'),
+            : const Text('Movie Catalog'),
         ),
         leading: Builder(
           builder: (context) => IconButton(
@@ -467,8 +467,8 @@ class _MovieCatalogAppState extends State<MovieCatalogApp> with SingleTickerProv
         ],
       ),
       drawer: GlassmorphicDrawer(
-        user: 'Movie Enthusiast',
-        email: 'movie.fan@example.com',
+        user: 'Pranay Kumar',
+        email: 'iamypranay@gmail.com',
       ),
       body: _isLoading 
         ? _buildLoadingView()
@@ -622,7 +622,7 @@ class _MovieCatalogAppState extends State<MovieCatalogApp> with SingleTickerProv
               child: Column(
                 children: [
                   Text(
-                    'CineVerse',
+                    'Movie Catalog',
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 28,
@@ -2386,24 +2386,30 @@ class MovieDetailPage extends StatelessWidget {
   Widget _buildCastCard(String actor) {
     // Sample images for cast (in a real app, you would use actual cast photos)
     final Map<String, String> actorImages = {
-      'Leonardo DiCaprio': 'https://m.media-amazon.com/images/M/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_UY317_CR10,0,214,317_AL_.jpg',
-      'Joseph Gordon-Levitt': 'https://m.media-amazon.com/images/M/MV5BMTY3NTk0NDI3Ml5BMl5BanBnXkFtZTgwNDA3NjY0MjE@._V1_UY317_CR14,0,214,317_AL_.jpg',
-      'Ellen Page': 'https://m.media-amazon.com/images/M/MV5BMTU3MzM3MDYzMV5BMl5BanBnXkFtZTcwNzk1Mzc3NA@@._V1_UX214_CR0,0,214,317_AL_.jpg',
-      'Sam Worthington': 'https://m.media-amazon.com/images/M/MV5BMTc5NTMyMjIwMV5BMl5BanBnXkFtZTcwNTMyNjYwMw@@._V1_UY317_CR6,0,214,317_AL_.jpg',
-      'Zoe Saldana': 'https://m.media-amazon.com/images/M/MV5BMTM2MjIwOTc5Nl5BMl5BanBnXkFtZTcwNzQ5ODM1Mw@@._V1_UY317_CR8,0,214,317_AL_.jpg',
-      'Sigourney Weaver': 'https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMyMw@@._V1_UY317_CR12,0,214,317_AL_.jpg',
-      'Christian Bale': 'https://m.media-amazon.com/images/M/MV5BMTkxMzk4MjQ4MF5BMl5BanBnXkFtZTcwMzExODQxOA@@._V1_UX214_CR0,0,214,317_AL_.jpg',
-      'Heath Ledger': 'https://m.media-amazon.com/images/M/MV5BMTI2NTY0NzA4MF5BMl5BanBnXkFtZTYwMjE1MDE0._V1_UX214_CR0,0,214,317_AL_.jpg',
-      'Aaron Eckhart': 'https://m.media-amazon.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_UY317_CR6,0,214,317_AL_.jpg',
-      'Matthew McConaughey': 'https://m.media-amazon.com/images/M/MV5BMTg0MDc3ODUwOV5BMl5BanBnXkFtZTcwMTk2NjY4Nw@@._V1_UX214_CR0,0,214,317_AL_.jpg',
-      'Anne Hathaway': 'https://m.media-amazon.com/images/M/MV5BNjQ5MTAxMDc5OF5BMl5BanBnXkFtZTcwOTI0OTE4OA@@._V1_UY317_CR1,0,214,317_AL_.jpg',
-      'Jessica Chastain': 'https://m.media-amazon.com/images/M/MV5BMTU1MDM5NjczOF5BMl5BanBnXkFtZTcwOTY2MDE4OA@@._V1_UY317_CR11,0,214,317_AL_.jpg',
-      'Robert Downey Jr.': 'https://m.media-amazon.com/images/M/MV5BNzg1MTUyNDYxOF5BMl5BanBnXkFtZTgwNTQ4MTE2MjE@._V1_UX214_CR0,0,214,317_AL_.jpg',
-      'Chris Evans': 'https://m.media-amazon.com/images/M/MV5BMTU2NTg1OTQzMF5BMl5BanBnXkFtZTcwNjIyMjkyMg@@._V1_UY317_CR6,0,214,317_AL_.jpg',
-      'Mark Ruffalo': 'https://m.media-amazon.com/images/M/MV5BNDQyNzMzZTMtYjlkNS00YzFhLWFhMTctY2M4YmQ1NmRhODBkXkEyXkFqcGdeQXVyNjcyNzgyOTE@._V1_UY317_CR20,0,214,317_AL_.jpg',
-      'Kate Winslet': 'https://m.media-amazon.com/images/M/MV5BODgzMzM2NTE0Ml5BMl5BanBnXkFtZTcwMTcyMTkyOQ@@._V1_UX214_CR0,0,214,317_AL_.jpg',
-      'Billy Zane': 'https://m.media-amazon.com/images/M/MV5BMTI5NzA2NTE0NF5BMl5BanBnXkFtZTcwNzAxMTUxMw@@._V1_UY317_CR15,0,214,317_AL_.jpg',
-    };
+  'Leonardo DiCaprio': 'https://m.media-amazon.com/images/M/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_UY317_CR10,0,214,317_AL_.jpg',
+  'Joseph Gordon-Levitt': 'https://m.media-amazon.com/images/M/MV5BMTY3NTk0NDI3Ml5BMl5BanBnXkFtZTgwNDA3NjY0MjE@._V1_UY317_CR14,0,214,317_AL_.jpg',
+  'Ellen Page': 'https://m.media-amazon.com/images/M/MV5BMTU3MzM3MDYzMV5BMl5BanBnXkFtZTcwNzk1Mzc3NA@@._V1_UY317_CR12,0,214,317_AL_.jpg',
+  'Sam Worthington': 'https://www.nbc.com/sites/nbcblog/files/2024/08/the-killer-cast-sam-worthington.jpg',
+  'Zoe Saldana': 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSrrZg65-rGvBbXvisdQd-BouxSw0dw-Z7U316XbQSNHuOrzBzbofgjMnRKhhQA_ZlqwqO5UWBBIL_P-mlPeN5gDQ',
+  'Sigourney Weaver': 'https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMyMw@@._V1_UY317_CR12,0,214,317_AL_.jpg',
+  'Christian Bale': 'https://m.media-amazon.com/images/M/MV5BMTkxMzk4MjQ4MF5BMl5BanBnXkFtZTcwMzExODQxOA@@._V1_UY317_CR1,0,214,317_AL_.jpg',
+  'Heath Ledger': 'https://m.media-amazon.com/images/M/MV5BMTI2NTY0NzA4MF5BMl5BanBnXkFtZTYwMjE1MDE0._V1_UX214_CR0,0,214,317_AL_.jpg',
+  'Aaron Eckhart': 'https://m.media-amazon.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_UY317_CR6,0,214,317_AL_.jpg',
+  'Matthew McConaughey': 'https://m.media-amazon.com/images/M/MV5BMTg0MDc3ODUwOV5BMl5BanBnXkFtZTcwMTk2NjY4Nw@@._V1_UY317_CR12,0,214,317_AL_.jpg',
+  'Anne Hathaway': 'https://m.media-amazon.com/images/M/MV5BNjQ5MDAwNjAzN15BMl5BanBnXkFtZTcwMTk4NzU0NA@@._V1_UY317_CR8,0,214,317_AL_.jpg',
+  'Jessica Chastain': 'https://m.media-amazon.com/images/M/MV5BMTU2MDcwMzY4NF5BMl5BanBnXkFtZTcwOTM0NDIyNw@@._V1_UY317_CR12,0,214,317_AL_.jpg',
+  'Robert Downey Jr.': 'https://m.media-amazon.com/images/M/MV5BNzg1MTUyNDYxOF5BMl5BanBnXkFtZTgwNTQ4MTE2MjE@._V1_UY317_CR12,0,214,317_AL_.jpg',
+  'Chris Evans': 'https://m.media-amazon.com/images/M/MV5BMTU2NTg1OTQzMF5BMl5BanBnXkFtZTcwNjIyMjkyMg@@._V1_UY317_CR6,0,214,317_AL_.jpg',
+  'Mark Ruffalo': 'https://m.media-amazon.com/images/M/MV5BNWIzZTI1ODUtZTUzMC00NTdiLWFlOTYtZTg4MGZkYmU4YzNlXkEyXkFqcGdeQXVyNTExOTk5Nzg@._V1_UY317_CR7,0,214,317_AL_.jpg',
+  'Kate Winslet': 'https://m.media-amazon.com/images/M/MV5BODgzMzM2NTE0Ml5BMl5BanBnXkFtZTcwMTcyMTkyOQ@@._V1_UY317_CR5,0,214,317_AL_.jpg',
+  'Billy Zane': 'https://m.media-amazon.com/images/M/MV5BMTI5NzA2NTE0NF5BMl5BanBnXkFtZTcwODYzOTAzMQ@@._V1_UY317_CR15,0,214,317_AL_.jpg',
+  'Keanu Reeves': 'https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg0YmJiZjc0OTk0XkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_UY317_CR100,0,214,317_AL_.jpg',
+  'Laurence Fishburne': 'https://m.media-amazon.com/images/M/MV5BMTc0NjczNDc1MV5BMl5BanBnXkFtZTYwMDU0Mjg1._V1_UX214_CR0,0,214,317_AL_.jpg',
+  'Carrie-Anne Moss': 'https://m.media-amazon.com/images/M/MV5BMTYxMjgwNzEwOF5BMl5BanBnXkFtZTcwNTQ0NzI5Ng@@._V1_UY317_CR16,0,214,317_AL_.jpg',
+  'Song Kang-ho': 'https://m.media-amazon.com/images/M/MV5BYWQwMmE5YzItYjVkNC00NGYyLTk3NTMtNDQ0NjQ2ZTI3MDQ2XkEyXkFqcGdeQXVyNDQxNjcxNQ@@._V1_UY317_CR22,0,214,317_AL_.jpg',
+  'Lee Sun-kyun': 'https://m.media-amazon.com/images/M/MV5BMzA1MzQxOTYyOV5BMl5BanBnXkFtZTgwMDI5NjYwNzE@._V1_UY317_CR20,0,214,317_AL_.jpg',
+  'Jo Yeo-jeong': 'https://m.media-amazon.com/images/M/MV5BOWZlMjVkYjgtNWU0Ni00YzhkLWE2NWUtYzQxNzFmZjFmMTMyXkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_UY317_CR20,0,214,317_AL_.jpg'
+};
     
     // Default image if actor not found in our map
     final imageUrl = actorImages[actor] ?? 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
@@ -2489,7 +2495,7 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('About CineVerse'),
+        title: const Text('About Movie Catalog'),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
@@ -2553,7 +2559,7 @@ class AboutUsPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          'CineVerse',
+                          'Movie Catalog',
                           style: GoogleFonts.poppins(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -2578,8 +2584,8 @@ class AboutUsPage extends StatelessWidget {
                       children: [
                         _buildGlassmorphicSection(
                           icon: Icons.info_outline,
-                          title: 'About CineVerse',
-                          content: 'CineVerse is your ultimate destination for exploring movies across genres. Our app provides a seamless experience for movie enthusiasts to discover new films, get detailed information, and keep track of their favorites.',
+                          title: 'About Movie Catalog',
+                          content: 'Movie Catalog is your ultimate destination for exploring movies across genres. Our app provides a seamless experience for movie enthusiasts to discover new films, get detailed information, and keep track of their favorites.',
                         ),
                         
                         const SizedBox(height: 20),
@@ -2587,7 +2593,7 @@ class AboutUsPage extends StatelessWidget {
                         _buildGlassmorphicSection(
                           icon: Icons.movie_filter,
                           title: 'Our Collection',
-                          content: 'We curate a diverse collection of movies from various genres, eras, and cultures. From blockbuster hits to indie gems, CineVerse aims to cater to all tastes and preferences in the world of cinema.',
+                          content: 'We curate a diverse collection of movies from various genres, eras, and cultures. From blockbuster hits to indie gems, Movie Catalog aims to cater to all tastes and preferences in the world of cinema.',
                         ),
                         
                         const SizedBox(height: 20),
@@ -2603,7 +2609,7 @@ class AboutUsPage extends StatelessWidget {
                         _buildGlassmorphicSection(
                           icon: Icons.people_outline,
                           title: 'Our Team',
-                          content: 'CineVerse is developed by a passionate team of movie buffs and Flutter developers who are committed to creating the best movie catalog experience for users worldwide.',
+                          content: 'Movie Catalog is developed by a passionate team of movie buffs and Flutter developers who are committed to creating the best movie catalog experience for users worldwide.',
                         ),
                         
                         const SizedBox(height: 20),
@@ -2662,13 +2668,13 @@ class AboutUsPage extends StatelessWidget {
                                   _buildContactItem(
                                     icon: Icons.email_outlined,
                                     title: 'Email',
-                                    content: 'support@cineverse.example.com',
+                                    content: 'support@Movie Catalog.example.com',
                                   ),
                                   const SizedBox(height: 15),
                                   _buildContactItem(
                                     icon: Icons.web_outlined,
                                     title: 'Website',
-                                    content: 'www.cineverse.example.com',
+                                    content: 'www.Movie Catalog.example.com',
                                   ),
                                   const SizedBox(height: 15),
                                   _buildContactItem(
@@ -2703,7 +2709,7 @@ class AboutUsPage extends StatelessWidget {
                         
                         // Footer
                         Text(
-                          '© 2025 CineVerse. All rights reserved.',
+                          '© 2025 Movie Catalog. All rights reserved.',
                           style: GoogleFonts.poppins(
                             color: Colors.white.withAlpha(150),
                             fontSize: 14,
