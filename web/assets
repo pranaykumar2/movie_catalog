@@ -1,0 +1,17 @@
+catalogItems = [
+  CatalogItemModel(
+    name: 'Item 1',
+    image: 'item1.jpg',
+    price: 10.99,
+  ),
+  CatalogItemModel(
+    name: 'Item 2',
+    image: 'item2.jpg',
+    price: 9.99,
+  ),
+  CatalogItemModel(
+    name: 'Item 3',
+    image: 'item3.jpg',
+    price: 12.99,
+  ),
+];
